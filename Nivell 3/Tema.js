@@ -12,10 +12,11 @@ class Tema extends events {
         this.usuaris.push(usuari)
 
     }
+
     subscribirse() {
         this.usuaris.forEach(usu => {
             usu.prototype.subscribe =
-                usu.emitter.on(`${this.tema}`, escuchar())
+                usu.on(`${this.tema}`, escuchar())
         });
     }
     comentar() {
