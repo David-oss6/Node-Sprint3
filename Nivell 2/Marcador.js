@@ -1,11 +1,16 @@
 class Marcador {
   static instancia;
-  constructor(puntos) {
+  constructor(puntoPaco, puntoDavid) {
     if (!Marcador.instancia) {
       Marcador.instancia = this;
-      this.puntos = puntos;
+      this.paco = puntoPaco
+      this.david = puntoDavid
+      console.log("primera instancia")
+    } else {
+      console.log("marcador ya existe")
+      return Marcador.instancia
     }
-    console.log("marcador ya esta instanciado");
+
   }
 }
 module.exports = { Marcador };
