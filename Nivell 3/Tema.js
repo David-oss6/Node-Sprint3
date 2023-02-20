@@ -1,33 +1,34 @@
-const events = require('events');
-const emitter = new events.EventEmitter();
-function escuchar(usuari, tema) {
-    console.log(`${usuari} esta escuchando sobre el tema ${tema}`)
+const { User } = require("./User");
+const events = require("events");
+const eventEmitter = new events.EventEmitter();
+
+class Tema {
+  constructor(tema) {
+    this.tema = tema;
+    this.usuaris = [];
+    eventEmitter.on("geografia", () => {
+      console.log(`Tema: se esta hablando de ${this.tema}`);
+      this.usuaris.forEach((usu) => {
+        console.log(`${usu.name} esta escuchando un comentario de geografia`);
+      });
+    });
+  }
+  subscribir(x) {
+    this.usuaris.push(x);
+    console.log(`${x.name} se ha suscrito a ${this.tema.toUpperCase()}`);
+  }
+  comentar(x, y) {
+    console.log(`${x} ha comentando sobre geografia: ${y}`);
+    eventEmitter.emit("geografia");
+  }
+
+  escuchar() {
+    eventEmitter.on("geografia", () =>
+      this.usuaris.forEach((usu) => {
+        console.log(`${usu.name} esta escuchando un comentario de geografia`);
+      })
+    );
+  }
 }
-class Tema extends events {
-    constructor(tema, usuari) {
-        super()
-        this.tema = tema
-        console.log(`se ha creado el tema ${tema.toUpperCase()}`)
-        this.usuaris = []
-        this.usuaris.push(usuari)
 
-    }
-
-    subscribirse() {
-        this.usuaris.forEach(usu => {
-            usu.prototype.subscribe =
-                usu.on(`${this.tema}`, escuchar())
-        });
-    }
-    comentar() {
-        this.usuari.emitter.emit(`${this.tema}`)
-        console.log(`${this.usuari} esta comentando sobre este tema`)
-    }
-    escuchar() {
-        console.log(`${this.usuari} esta escuchando sobre el tema ${this.tema}`)
-    }
-
-}
-
-
-module.exports = { Tema }
+module.exports = { Tema };

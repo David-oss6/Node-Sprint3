@@ -1,16 +1,19 @@
 // https://www.w3schools.com/nodejs/nodejs_events.asp
-const { User } = require("./User.js")
-const { Tema } = require("./Tema.js")
-const EventEmitter = require('events');
+const { User } = require("./User.js");
+const { Tema } = require("./Tema.js");
+const events = require("events");
+const eventEmitter = new events.EventEmitter();
 
-const paco = new User("Paco")
-let david = new User("David")
+const paco = new User("Paco");
+const david = new User("David");
 
-const geoSubscribers = [david, paco]
-const geo = new Tema("geografia", geoSubscribers)
-david = new EventEmitter()
-david.on("geografia", () => { console.log("escuchando sobre geografia") })
+const geoSubscribers = [david, paco];
+const geo = new Tema("geografia");
 
-david.emit("geografia")
-geo.subscribirse("geografia")
+geo.subscribir(paco);
+geo.subscribir(david);
 
+geo.comentar("David", "La luna esta lejos");
+geo.comentar("Paco", "No lo sabía");
+// david.subscribirse(geo);
+// console.log(david);
