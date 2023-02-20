@@ -8,26 +8,21 @@ class Tema {
     this.usuaris = [];
     eventEmitter.on("geografia", () => {
       console.log(`Tema: se esta hablando de ${this.tema}`);
-      this.usuaris.forEach((usu) => {
-        console.log(`${usu.name} esta escuchando un comentario de geografia`);
-      });
     });
   }
   subscribir(x) {
     this.usuaris.push(x);
+    x = {
+      ...x,
+      listener: eventEmitter.on("geografia", () =>
+        console.log(`${x.name} escuchó el comentario sobre ${this.tema}`)
+      ),
+    };
     console.log(`${x.name} se ha suscrito a ${this.tema.toUpperCase()}`);
   }
   comentar(x, y) {
-    console.log(`${x} ha comentando sobre geografia: ${y}`);
+    console.log(`${x.name} ha comentando sobre ${this.tema}: ${y}`);
     eventEmitter.emit("geografia");
-  }
-
-  escuchar() {
-    eventEmitter.on("geografia", () =>
-      this.usuaris.forEach((usu) => {
-        console.log(`${usu.name} esta escuchando un comentario de geografia`);
-      })
-    );
   }
 }
 

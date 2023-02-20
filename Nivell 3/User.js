@@ -1,16 +1,10 @@
 const events = require("events");
 const eventEmitter = new events.EventEmitter();
 
-class User {
+class User extends events {
   constructor(x) {
+    super();
     this.name = x;
-    this.subscripciones = [];
-  }
-  subscribirse(tema) {
-    this.subscripciones.push(tema);
-    eventEmitter.on(`${tema}`, () =>
-      console.log(`${this.name} esta escuchando sobre ${tema.tema}`)
-    );
   }
 }
 
