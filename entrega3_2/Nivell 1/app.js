@@ -21,7 +21,7 @@ function division(z) {
   return z;
 }
 
-// modificamos {objeto enviado}
+// añadimos las funciones que ejecutara middleware antes de las funciones calculadora
 app.use((data, next) => {
   cuadrado(data);
   console.log("cuadrado", data);
