@@ -1,8 +1,9 @@
 const { Calculadora } = require("./Claculadora");
 const { Middleware } = require("./Middleware");
 const params = require("./params.json");
+
 const calcu = new Calculadora();
-const mid = new Middleware(calcu);
+const app = new Middleware(calcu);
 
 function cuadrado(z) {
   z.x = z.x * z.x;
@@ -21,19 +22,27 @@ function division(z) {
 }
 
 // modificamos {objeto enviado}
-mid.use((req, next) => {
-  req = cuadrado(req);
-  console.log("cuadrado", req);
-  req = cubo(req);
-  console.log("cubo", req);
-  req = division(req);
-  console.log("division", req);
-  next(); //llama a middleware
+app.use((data, next) => {
+  cuadrado(data);
+  console.log("cuadrado", data);
+  next();
 });
 
-console.log("SUMA", mid.sumar({ x: params.dos, y: params.tres }));
-console.log("RESTA", mid.restar({ x: params.tres, y: params.dos }));
-console.log(
-  "MULTIPLICACION",
-  mid.multiplicar({ x: params.tres, y: params.tres })
-);
+app.use((data, next) => {
+  cubo(data);
+  console.log("cubo", data);
+  next();
+});
+
+app.use((data, next) => {
+  division(data);
+  console.log("division", data);
+  next();
+});
+
+console.log("SUMA", app.sumar({ x: params.dos, y: params.tres }));
+// console.log("RESTA", app.restar({ x: params.tres, y: params.dos }));
+// console.log(
+//   "MULTIPLICACION",
+//   app.multiplicar({ x: params.tres, y: params.tres })
+// );
