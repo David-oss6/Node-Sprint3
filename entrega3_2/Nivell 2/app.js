@@ -1,22 +1,21 @@
 
-const { Decorator } = require("./decorator")
+const aJ = require("./articulos.json");
+const { Articulo } = require("./Articulo");
+const { decorate } = require("./decorator");
+let articulos = [];
+let articulosDecorated = [];
 
-class Converter {
-    getUSD(z) { return z }
-    getGBP(z) { return z }
-    getCHF(z) { return z }
-    getJPY(z) { return z }
-    getCAD(z) { return z }
-    getCNY(z) { return z }
-}
+// creaacion de articulos
+aJ.forEach((x) => {
+    articulos.push(new Articulo(x.nombre, x.valor, x.moneda));
+});
 
-let conversion = new Converter(20)
-conversion = new Decorator(conversion)
+console.table(articulos);
 
-console.log(`USD to €:`, conversion.getUSD(10))
-console.log(`GBP to €:`, conversion.getGBP(30))
-console.log(`CHF to €:`, conversion.getCHF(15))
-console.log(`JPY to €:`, conversion.getJPY(202))
-console.log(`CAD to €:`, conversion.getCAD(20))
-console.log(`CNY to €:`, conversion.getCNY(20))
+// decoramos los articulos
+articulos.forEach((elem) => {
+    articulosDecorated.push(decorate(elem));
+});
+
+console.table(articulosDecorated);
 

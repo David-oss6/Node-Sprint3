@@ -1,26 +1,49 @@
-const monedas = require("./currency_conversions.json");
-class Decorator {
-    constructor(conversion) {
-        this.conversion = conversion
-    }
-    getUSD(z) {
-        return this.conversion.getUSD(z) * monedas.USD_EUR
-    }
-    getGBP(z) {
-        return this.conversion.getGBP(z) * monedas.GBP_EUR
-    }
-    getCHF(z) {
-        return this.conversion.getCHF(z) * monedas.CHF_EUR
-    }
-    getJPY(z) {
-        return this.conversion.getJPY(z) * monedas.JPY_EUR
-    }
-    getCAD(z) {
-        return this.conversion.getCAD(z) * monedas.CAD_EUR
-    }
-    getCNY(z) {
-        return this.conversion.getCNY(z) * monedas.CNY_EUR
-    }
-}
 
-module.exports = { Decorator }
+
+const decorate = (art) => {
+  moneda = art.moneda.toLowerCase();
+  switch (moneda) {
+    case "usd":
+      art = {
+        ...art,
+        euros: art.valor * monedas.USD_EUR,
+      };
+      break;
+    case "gbp":
+      art = {
+        ...art,
+        euros: art.valor * monedas.GBP_EUR,
+      };
+      break;
+    case "chf":
+      art = {
+        ...art,
+        euros: art.valor * monedas.CHF_EUR,
+      };
+      break;
+    case "jpy":
+      art = {
+        ...art,
+        euros: art.valor * monedas.JPY_EUR,
+      };
+      break;
+    case "cad":
+      art = {
+        ...art,
+        euros: art.valor * monedas.CAD_EUR,
+      };
+      break;
+    case "cny":
+      art = {
+        ...art,
+        euros: art.valor * monedas.CNY_EUR,
+      };
+      break;
+    default:
+      console.log("la moneda no existe");
+  }
+  return art;
+};
+
+module.exports = { decorate };
+

@@ -1,0 +1,33 @@
+[
+  {
+    "nombre": "lampara",
+    "valor": 15,
+    "moneda": "usd"
+  },
+  {
+    "nombre": "mesa",
+    "valor": 25,
+    "moneda": "gbp"
+  },
+  {
+    "nombre": "silla",
+    "valor": 19,
+    "moneda": "chf"
+  },
+
+  {
+    "nombre": "sofa",
+    "valor": 15,
+    "moneda": "jpy"
+  },
+  {
+    "nombre": "puerta",
+    "valor": 25,
+    "moneda": "cad"
+  },
+  {
+    "nombre": "encimera",
+    "valor": 19,
+    "moneda": "cny"
+  }
+]
