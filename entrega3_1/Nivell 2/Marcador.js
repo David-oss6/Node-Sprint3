@@ -30,11 +30,9 @@ class Marcador {
       this.marcadores.splice(exist.i, 1)
       this.marcadores.push(newScore)
     }
-
-
-    console.log("fin puntuar:::", this.marcadores)
   }
   mostrarPuntuacion() {
+    console.log("MARCADORES:", this.marcadores)
 
   }
 }

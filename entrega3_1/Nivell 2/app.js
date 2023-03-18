@@ -19,8 +19,9 @@ const empezarJuego = () => {
   }, [2000])
   setTimeout(() => {
     penaltis.chutar()
-    // juego2.chutar()
+    juego2.chutar()
     marcador.mostrarPuntuacion()
   }, [4000])
+
 }
 empezarJuego()
