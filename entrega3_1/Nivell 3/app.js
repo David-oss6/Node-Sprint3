@@ -8,21 +8,22 @@ const paco = new User("Paco");
 const david = new User("David");
 const sonia = new User("Sonia");
 
-const geoSubscribers = [david, paco];
 const geo = new Tema("geografia");
+const arque = new Tema("arqueologia");
 
-geo.subscribir(paco);
-geo.subscribir(david);
+geo.suscribir(paco);
+geo.suscribir(david)
+
+paco.comentar(geo, 'El rio tiene agua')
+david.comentar(geo, 'El rio esta frío')
+
+
 
 setTimeout(() => {
-  geo.comentar(david, "La luna esta lejos");
-}, 1000);
-setTimeout(() => {
-  geo.comentar(paco, "No lo sabía");
-}, 2000);
+  arque.suscribir(david);
+  arque.suscribir(sonia);
+  sonia.comentar(arque, 'Viva Indiana Jones')
+  david.comentar(arque, 'La tierra es plana')
+}, 3000);
 
-setTimeout(() => {
-  const arque = new Tema("arqueologia");
-  arque.subscribir(david);
-  arque.comentar(david, "Indiana Jones es lo más");
-}, 4000);
+
